@@ -26,9 +26,9 @@ export class FormComponent implements OnInit {
   usForm!: FormGroup;
   @Output() createUser = new EventEmitter<User>();
 
-  emRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/);
+  emRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}){1,2}$/);
   telRegex = new RegExp(/^\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{0,9}$/);
-  cepRegex = new RegExp(/^\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{0,9}$/);
+  cepRegex = new RegExp(/^\d{8}$/);
   cpfRegex = new RegExp(/^[0-9]{11}$/);
   cnpjRegex = new RegExp(/^[0-9]{14}$/);
 
@@ -92,7 +92,7 @@ export class FormComponent implements OnInit {
   };
   
   updateCep() {
-    const cep = this.usForm.get('cep')?.value;
+    const cep = this.usForm.get('cep')?.value.toString();
     if (this.usForm.get('cep')?.valid){
       this.http.get(`https://viacep.com.br/ws/${cep}/json/`).subscribe((data: any) => {
         if (!data.erro) {

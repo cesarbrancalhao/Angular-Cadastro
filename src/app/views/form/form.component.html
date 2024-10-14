@@ -19,7 +19,7 @@
           <label for="cpf">CPF:</label>
           <input formControlName="doc" type="text" placeholder="000.000.000-00" name="cpf" class="form-control" [ngClass]="{'is-invalid': isInvalid('doc')}">
           <div class="invalid-feedback">
-            Documento inválido.
+            Documento inválido. Lembre-se de utilizar apenas números.
           </div>
         </div>
 
@@ -27,7 +27,7 @@
           <label for="cnpj">CNPJ:</label>
           <input formControlName="doc" type="text" placeholder="00.000.000/0000-00" name="cnpj" class="form-control" [ngClass]="{'is-invalid': isInvalid('doc')}">
           <div class="invalid-feedback">
-            Documento inválido.
+            Documento inválido. Lembre-se de utilizar apenas números.
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
       <div class="row">
         <div class="form-group col-md-6 mt-3">
           <label for="cep">CEP:</label>
-          <input formControlName="cep" type="text" placeholder="Apenas números" name="cep" class="form-control" id="cep" [ngClass]="{'is-invalid': isInvalid('cep')}">
+          <input formControlName="cep" type="number" placeholder="Apenas números" name="cep" class="form-control" id="cep" [ngClass]="{'is-invalid': isInvalid('cep')}">
           <div class="invalid-feedback">
             CEP inválido.
           </div>
