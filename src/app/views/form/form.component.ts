@@ -29,8 +29,8 @@ export class FormComponent implements OnInit {
   emRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/);
   telRegex = new RegExp(/^\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{0,9}$/);
   cepRegex = new RegExp(/^\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{0,9}$/);
-  cpfRegex = new RegExp(/^\d{11}$/);
-  cnpjRegex = new RegExp(/^\d{14}$/);
+  cpfRegex = new RegExp(/^[0-9]{11}$/);
+  cnpjRegex = new RegExp(/^[0-9]{14}$/);
 
   ngOnInit(): void {
 
@@ -154,8 +154,8 @@ export class FormComponent implements OnInit {
       const doc: string = control.value.toString();
       let valid = true;
 
-      if (tipo === 'f' && doc.length !== 11 && this.cpfRegex.test(doc)) valid = false;
-      if (tipo === 'j' && doc.length !== 14 && this.cnpjRegex.test(doc)) valid = false;
+      if (tipo === 'f' && (doc.length !== 11 || !this.cpfRegex.test(doc))) valid = false;
+      if (tipo === 'j' && (doc.length !== 14 || !this.cnpjRegex.test(doc))) valid = false;
 
       const exists = this.us.getall().find(user => user.doc === doc);
       if (exists !== undefined && this.usForm && exists.id !== this.usForm.get('id')?.value) {
