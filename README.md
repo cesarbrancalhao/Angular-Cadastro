@@ -3,6 +3,8 @@
 This is a technical test made with [Angular CLI](https://github.com/angular/angular-cli) version 18.2. <a href="https://getbootstrap.com/">Bootstrap</a> 5.3 and web API <a href="https://viacep.com.br/">Viacep</a>.
 <hr>
 
+Check it [live](https://angular-cadastro.vercel.app/)!
+
 ![alt text](public/sample.jpg?raw=true)
 
 ## Development server
