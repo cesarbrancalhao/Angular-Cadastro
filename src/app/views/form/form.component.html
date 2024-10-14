@@ -1,0 +1,107 @@
+<div class="col-md-8 col-lg-6 mx-auto mt-5">
+  <h2 class="text-center">Adicionar Usuário</h2>
+  <form [formGroup]="usForm" (ngSubmit)="submit()" class="mt-4">
+    <div class="d-none">
+      <input formControlName="id" name="id" class="form-control">
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6 mt-3">
+        <label for="tipo">Tipo de Pessoa:</label>
+        <select formControlName="tipo" class="form-control" id="tipo">
+          <option value="f">Pessoa Física</option>
+          <option value="j">Pessoa Jurídica</option>
+        </select>
+      </div>
+      
+      <div class="form-group col-md-6 mt-3" *ngIf="usForm.get('tipo')?.value === 'f'">
+        <label for="cpf">CPF:</label>
+        <input formControlName="doc" type="text" placeholder="000.000.000-00" name="cpf" class="form-control" [ngClass]="{'is-invalid': isInvalid('doc')}">
+        <div class="invalid-feedback">
+          Documento inválido.
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 mt-3" *ngIf="usForm.get('tipo')?.value === 'j'">
+        <label for="cnpj">CNPJ:</label>
+        <input formControlName="doc" type="text" placeholder="00.000.000/0000-00" name="cnpj" class="form-control" [ngClass]="{'is-invalid': isInvalid('doc')}">
+        <div class="invalid-feedback">
+          Documento inválido.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="nome">Nome/Razão:</label>
+      <input formControlName="nome" placeholder="Nome Completo" name="nome" class="form-control" id="nome" [ngClass]="{'is-invalid': isInvalid('nome')}">
+      <div class="invalid-feedback">
+        Nome inválido.
+      </div>
+    </div>
+
+    <div class="form-group mt-3" *ngIf="usForm.get('tipo')?.value === 'j'">
+      <label for="nomeF">Nome Fantasia:</label>
+      <input formControlName="nomeF" placeholder="Nome Fantasia" name="nomeF" class="form-control" id="nomeF" [ngClass]="{'is-invalid': isInvalid('nomeF')}">
+      <div class="invalid-feedback">
+        Nome fantasia inválido.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6 mt-3">
+        <label for="cep">CEP:</label>
+        <input formControlName="cep" type="text" placeholder="Apenas números" name="cep" class="form-control" id="cep" [ngClass]="{'is-invalid': isInvalid('cep')}">
+        <div class="invalid-feedback">
+          CEP inválido.
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 mt-3">
+        <label for="endereco">Endereço:</label>
+        <input formControlName="endereco" name="endereco" class="form-control" id="endereco" [ngClass]="{'is-invalid': isInvalid('endereco')}">
+        <div class="invalid-feedback">
+          Endereço inválido.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6 mt-3">
+        <label for="bairro">Bairro:</label>
+        <input formControlName="bairro" name="bairro" class="form-control" id="bairro" [ngClass]="{'is-invalid': isInvalid('bairro')}">
+        <div class="invalid-feedback">
+          Bairro inválido.
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 mt-3">
+        <label for="cidade">Cidade:</label>
+        <input formControlName="cidade" name="cidade" class="form-control" id="cidade" [ngClass]="{'is-invalid': isInvalid('cidade')}">
+        <div class="invalid-feedback">
+          Cidade inválida.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="telefone">Telefone:</label>
+      <input formControlName="telefone" type="text" placeholder="+55 (45) 0000-0000" name="telefone" class="form-control" id="telefone" [ngClass]="{'is-invalid': isInvalid('telefone')}">
+      <div class="invalid-feedback">
+        Telefone inválido.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email" placeholder="exemplo@email.com" name="email" class="form-control" id="email" [ngClass]="{'is-invalid': isInvalid('email')}">
+      <div class="invalid-feedback">
+        Email inválido.
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-success mx-2">Enviar</button>
+      <button class="btn btn-outline-secondary mx-2" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>
